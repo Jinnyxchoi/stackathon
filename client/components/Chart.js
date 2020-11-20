@@ -1,5 +1,5 @@
 import React from 'react'
-import {Line} from 'react-chartjs-2'
+import {HorizontalBar} from 'react-chartjs-2'
 
 function Chart(props) {
   const data = {
@@ -14,9 +14,19 @@ function Chart(props) {
       }
     ]
   }
+  const options = {
+    onClick: function(e) {
+      let element = this.getElementAtEvent(e)
+      if (element.length) {
+        element = element[0]._model.label
+        console.log('element', element)
+      }
+    }
+  }
+
   return (
     <div>
-      <Line data={data} />
+      <HorizontalBar data={data} options={options} />
     </div>
   )
 }

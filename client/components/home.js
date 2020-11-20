@@ -37,6 +37,7 @@ class Home extends Component {
     return (
       <div>
         <p>Cats by Department</p>
+
         <Chart names={names} numbers={numbers} label={label1} />
         <p>
           Meowzers! Let's take a deeper look at the Drawings and Prints
