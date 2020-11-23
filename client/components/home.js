@@ -1,27 +1,23 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchDepartments} from '../store/allDepartments'
-import {fetchDrawings} from '../store/drawingsAndPrints'
+
 import Chart from './Chart'
 import Loader from 'react-loader-spinner'
 
 class Home extends Component {
   componentDidMount() {
     this.props.loadingDepartments()
-    this.props.loadingCountries()
+    // this.props.loadingCountries()
   }
 
   render() {
-    const countries = this.props.countries
-    const countriesArr = countries.names || []
-    console.log('countriesARR', countriesArr)
-    const countriesNum = countries.numbers || []
     const departments = this.props.departments
     let loading = true
     const names = departments.names || []
     const numbers = departments.numbers || []
     const label1 = '# of 🐱'
-    const label2 = 'temp label'
+
     if (numbers.length >= 1) {
       loading = false
     }
@@ -39,11 +35,11 @@ class Home extends Component {
         <p>Cats by Department</p>
 
         <Chart names={names} numbers={numbers} label={label1} />
-        <p>
+        {/* <p>
           Meowzers! Let's take a deeper look at the Drawings and Prints
           Department
         </p>
-        <Chart names={countriesArr} numbers={countriesNum} label={label2} />
+        <Chart names={countriesArr} numbers={countriesNum} label={label2} /> */}
       </div>
     )
   }
@@ -51,12 +47,10 @@ class Home extends Component {
 
 const mapState = state => {
   return {
-    departments: state.departmentsReducer,
-    countries: state.drawingsReducer
+    departments: state.departmentsReducer
   }
 }
 const mapDispatch = dispatch => ({
-  loadingDepartments: () => dispatch(fetchDepartments()),
-  loadingCountries: () => dispatch(fetchDrawings())
+  loadingDepartments: () => dispatch(fetchDepartments())
 })
 export default connect(mapState, mapDispatch)(Home)

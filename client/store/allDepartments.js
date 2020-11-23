@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const GET_DEPARTMENTS = 'GET_DEPARTMENTS'
 
-export const setDepartments = (names, numbers) => {
+export const setDepartments = (names, numbers, id) => {
   return {
     type: GET_DEPARTMENTS,
     departments: {
@@ -33,7 +33,6 @@ export const fetchDepartments = () => {
         numbers.push(data.total)
       }
 
-      console.log('numbers', numbers)
       dispatch(setDepartments(names, numbers))
     } catch (error) {
       console.log('there was an error in fetchDepartments', error)

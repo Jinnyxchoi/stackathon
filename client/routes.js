@@ -2,7 +2,8 @@ import React from 'react'
 // import {connect} from 'react-redux'
 import {Route, Switch} from 'react-router-dom'
 
-import Home from './components/home'
+import Home from './components/Home'
+import CountriesAndImages from './components/CountriesAndImages'
 
 /**
  * COMPONENT
@@ -11,10 +12,11 @@ function Routes() {
   return (
     <Switch>
       <Route path="/home" component={Home} />
+      <Route path="/countriesandimages" component={CountriesAndImages} />
     </Switch>
   )
 }
-
+// render={() => <CountriesAndImages dept="Drawings and Prints" />
 /**
  * CONTAINER
  */

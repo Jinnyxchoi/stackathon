@@ -1,34 +1,63 @@
 import React from 'react'
-import {HorizontalBar} from 'react-chartjs-2'
+import Chart from 'chart.js'
+import {Redirect} from 'react-router'
 
-function Chart(props) {
-  const data = {
-    labels: props.names,
-    datasets: [
-      {
-        label: props.label,
-        data: props.numbers,
-        fill: true,
-        backgroundColor: 'rgba(75,192,192,0.2)',
-        borderColor: 'rgba(75,192,192,1)'
-      }
-    ]
-  }
-  const options = {
-    onClick: function(e) {
-      let element = this.getElementAtEvent(e)
-      if (element.length) {
-        element = element[0]._model.label
-        console.log('element', element)
-      }
+class myChart extends React.Component {
+  chartRef = React.createRef()
+  constructor(props) {
+    super(props)
+    this.state = {
+      redirect: false
     }
   }
+  componentDidMount() {
+    const myChartRef = this.chartRef.current.getContext('2d')
+    const myBarGraph = new Chart(myChartRef, {
+      type: 'horizontalBar',
+      data: {
+        //Bring in data
+        labels: this.props.names,
+        datasets: [
+          {
+            label: this.props.label,
+            data: this.props.numbers,
+            fill: true,
+            backgroundColor: 'rgba(75,192,192,0.2)',
+            borderColor: 'rgba(75,192,192,1)'
+          }
+        ]
+      },
+      options: {
+        onClick: function(e) {
+          let element = myBarGraph.getElementAtEvent(e)
+          if (element.length) {
+            element = element[0]._model.label
+            element = String(element)
+            this.setState({
+              redirect: element
+            })
+          }
+        }.bind(this)
+      }
+    })
+  }
 
-  return (
-    <div>
-      <HorizontalBar data={data} options={options} />
-    </div>
-  )
+  render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/countriesandimages',
+            state: {referrer: this.state.redirect}
+          }}
+        />
+      )
+    }
+    return (
+      <div>
+        <canvas id="myChart" ref={this.chartRef} />
+      </div>
+    )
+  }
 }
-
-export default Chart
+export default myChart

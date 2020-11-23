@@ -3,9 +3,14 @@ import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import departmentsReducer from './allDepartments'
-import drawingsReducer from './drawingsAndPrints'
+import countriesReducer from './drawingsAndPrints'
+import imagesReducer from './images'
 
-const reducer = combineReducers({departmentsReducer, drawingsReducer})
+const reducer = combineReducers({
+  departmentsReducer,
+  countriesReducer,
+  imagesReducer
+})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
