@@ -4,7 +4,7 @@ import {fetchDepartments} from '../store/allDepartments'
 
 import Chart from './Chart'
 import Loader from 'react-loader-spinner'
-
+import './images.css'
 class Home extends Component {
   componentDidMount() {
     this.props.loadingDepartments()
@@ -31,8 +31,9 @@ class Home extends Component {
       )
     }
     return (
-      <div>
-        <p>Cats by Department</p>
+      <div id="imagesPage">
+        {/* <h1 id="header"> The Meow Project</h1> */}
+        <p id="bold">Cats by Department</p>
 
         <Chart names={names} numbers={numbers} label={label1} />
         {/* <p>

@@ -20,9 +20,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        // test: /\.jsx?$/,
+        test: /\.js$|jsx/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+        // query: {
+        //   presets: ['es2015'],
+        // },
+      },
+      {
+        test: /\.css$/,
+        loader: ['style-loader', 'css-loader']
+        // loader: 'css-loader',
       }
     ]
   }

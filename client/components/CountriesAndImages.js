@@ -4,13 +4,17 @@ import {fetchCountries} from '../store/drawingsAndPrints'
 import {fetchImages} from '../store/images'
 import CountriesChart from './CountriesChart'
 import Loader from 'react-loader-spinner'
-
+import './images.css'
+import {Link} from 'react-router-dom'
+import Save from './Save'
 class CountriesAndImages extends Component {
   componentDidMount() {
     this.props.loadingCountries(this.props.location.state.referrer)
     this.props.loadingImages(this.props.location.state.referrer)
   }
-
+  // handleClick(e){
+  //   e.preventDefault();
+  // }
   render() {
     const countries = this.props.countries
     let loading = true
@@ -19,7 +23,6 @@ class CountriesAndImages extends Component {
     const label1 = 'temp Labelll'
     const department = this.props.location.state.referrer
     const images = this.props.images
-    console.log('images', images)
 
     if (numbers.length > 0 && images.length > 0) {
       loading = false
@@ -27,26 +30,36 @@ class CountriesAndImages extends Component {
 
     if (loading) {
       return (
-        <div>
+        <div className="loader">
           <p>Meooowww...Loading...</p>
           <Loader type="Rings" color="#00BFFF" height={80} width={80} />
         </div>
       )
     }
     return (
-      <div>
+      <div id="imagesPage">
         <div>
-          <p>Cats by Countries in {department}</p>
+          <p id="bold">Cats by Countries in {department}</p>
 
           <CountriesChart names={names} numbers={numbers} label={label1} />
         </div>
         <div>
-          <p>Some highlights from the department.</p>
-          <div className="products">
+          <p id="bold">Some highlights in {department}:</p>
+          <div className="images">
             {images.map((elm, key) => {
               return (
-                <div key={key} className="product">
+                <div key={key} className="image">
+                  <div id="title">
+                    <p>Title: {elm.title}</p>
+                    <p>
+                      Artist:{' '}
+                      {elm.artistDisplayName.length === 0
+                        ? 'N/A'
+                        : elm.artistDisplayName}
+                    </p>
+                  </div>
                   <img src={elm.primaryImage} alt="image" className="images" />
+                  <Save image={elm} />
                 </div>
               )
             })}

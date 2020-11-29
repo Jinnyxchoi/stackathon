@@ -1,0 +1,29 @@
+#imagesPage {
+  align-content: center;
+  padding-top: 50px;
+  padding-right: 120px;
+  padding-bottom: 90px;
+  padding-left: 100px;
+  /* margin: 90px auto; */
+}
+.images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 25px;
+  grid-row-gap: 30px;
+  width: 100%;
+}
+#title {
+  text-align: center;
+}
+#bold {
+  font-weight: bold;
+  text-align: center;
+  padding: 30px;
+}
+#header {
+  text-align: center;
+  border: 10px dotted greenyellow;
+  width: 110px;
+  padding: 10px;
+}

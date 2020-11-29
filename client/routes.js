@@ -4,7 +4,7 @@ import {Route, Switch} from 'react-router-dom'
 
 import Home from './components/Home'
 import CountriesAndImages from './components/CountriesAndImages'
-
+import Email from './components/Email'
 /**
  * COMPONENT
  */
@@ -13,6 +13,7 @@ function Routes() {
     <Switch>
       <Route path="/home" component={Home} />
       <Route path="/countriesandimages" component={CountriesAndImages} />
+      <Route path="/saved" component={Email} />
     </Switch>
   )
 }

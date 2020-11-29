@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
+const session = require('express-session')
 
 const PORT = process.env.PORT || 8080
 const app = express()
@@ -13,6 +14,16 @@ app.use(morgan('dev'))
 // body parsing middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+//SESSION
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET || 'my best friend is Cody',
+//     store: sessionStore,
+//     resave: false,
+//     saveUninitialized: false
+//   })
+// )
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')))
